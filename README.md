@@ -8,7 +8,7 @@
 - 5/12 Spring Data JPA, QueryDSL 학습 및 엔티티, 레포지토리 설계
 
 # 테이블 설계도
-![Untitled Diagram drawio (13)](https://user-images.githubusercontent.com/47964708/168067304-687b2624-45a3-4f43-9dcd-2e15c79a3453.png)  
+![Untitled Diagram drawio (14)](https://user-images.githubusercontent.com/47964708/168087696-ffe1d701-a4fa-4544-8ce7-2d5fa9af775f.png)  
 
 - ~delivery_area: `값 타입 컬렉션`을 사용해보기 위해 '다대다'로 연관관계를 맺지 않았습니다.~
 - 다대다 연관관계를 사용하지 않은 근거가 필요하여 delivery_area -> excluded_area 변경 (2022.05.12)
