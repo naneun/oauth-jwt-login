@@ -1,13 +1,13 @@
-package com.naneun.mall.domain.entity.done;
+package com.naneun.mall.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@EqualsAndHashCode(of = "id")
+@ToString(exclude = {"product"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductImage {
 

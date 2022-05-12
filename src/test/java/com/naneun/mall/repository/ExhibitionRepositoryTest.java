@@ -1,13 +1,12 @@
 package com.naneun.mall.repository;
 
-import com.naneun.mall.domain.entity.done.Category;
-import com.naneun.mall.domain.entity.done.Exhibition;
+import com.naneun.mall.domain.entity.Category;
+import com.naneun.mall.domain.entity.Exhibition;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,32 +27,26 @@ class ExhibitionRepositoryTest {
     void 입력_테스트() {
         Category mainCategory3 = Category.builder()
                 .title("상위_카테고리3")
-                .subCategories(new ArrayList<>())
                 .build();
 
         Category subCategory3_1 = Category.builder()
                 .title("하위_카테고리3_1")
-                .subCategories(new ArrayList<>())
                 .build();
 
         Category subCategory3_2 = Category.builder()
                 .title("하위_카테고리3_2")
-                .subCategories(new ArrayList<>())
                 .build();
 
         Category mainCategory4 = Category.builder()
                 .title("상위_카테고리4")
-                .subCategories(new ArrayList<>())
                 .build();
 
         Category subCategory4_1 = Category.builder()
                 .title("하위_카테고리4_1")
-                .subCategories(new ArrayList<>())
                 .build();
 
         Category subCategory4_2 = Category.builder()
                 .title("하위_카테고리4_2")
-                .subCategories(new ArrayList<>())
                 .build();
 
         mainCategory3.addSubCategory(subCategory3_1);
@@ -64,7 +57,6 @@ class ExhibitionRepositoryTest {
 
         Exhibition exhibition = Exhibition.builder()
                 .title("기획전3")
-                .categories(new ArrayList<>())
                 .build();
 
         exhibition.addCategory(mainCategory3);

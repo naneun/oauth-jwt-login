@@ -1,17 +1,15 @@
-package com.naneun.mall.domain.entity.done;
+package com.naneun.mall.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.naneun.mall.domain.link.ProductToDiscountEvent;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
+@EqualsAndHashCode(of = "id")
+@ToString(exclude = {"productToDiscountEvents"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DiscountEvent {
 
@@ -22,6 +20,9 @@ public class DiscountEvent {
     private String title;
 
     private double discountRate;
+
+    @OneToMany(mappedBy = "discountEvent", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductToDiscountEvent> productToDiscountEvents;
 
     @Builder
     public DiscountEvent(Long id, String title, double discountRate) {

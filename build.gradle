@@ -34,8 +34,25 @@ dependencies {
     /* Lombok */
     implementation 'org.projectlombok:lombok'
     annotationProcessor "org.projectlombok:lombok"
+
+    /* QueryDsL */
+    implementation 'com.querydsl:querydsl-jpa'
+
+    annotationProcessor(
+            'com.querydsl:querydsl-apt',
+            'jakarta.persistence:jakarta.persistence-api',
+            'jakarta.annotation:jakarta.annotation-api'
+    )
 }
 
 test {
     useJUnitPlatform()
+}
+
+sourceSets {
+    main.java.srcDir "$buildDir/generated/querydsl"
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
 }

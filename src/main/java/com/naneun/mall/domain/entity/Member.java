@@ -1,17 +1,15 @@
-package com.naneun.mall.domain.entity.doing;
+package com.naneun.mall.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
 @Getter
+@ToString(exclude = "orderSheets")
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
@@ -29,4 +27,7 @@ public class Member {
 
     @NotEmpty
     private String resourceServer;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderSheet> orderSheets;
 }

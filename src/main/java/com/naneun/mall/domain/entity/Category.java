@@ -1,10 +1,11 @@
-package com.naneun.mall.domain.entity.done;
+package com.naneun.mall.domain.entity;
 
 import com.naneun.mall.domain.link.CategoryToProduct;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,23 +33,25 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<CategoryToProduct> categoryToProducts;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Category> subCategories;
 
     @Builder
-    public Category(Long id, String title, Category parent, List<CategoryToProduct> categoryToProducts,
-                    List<Category> subCategories, Exhibition exhibition) {
-
+    public Category(Long id, String title, Category parent, Exhibition exhibition) {
         this.id = id;
         this.title = title;
         this.parent = parent;
-        this.categoryToProducts = categoryToProducts;
-        this.subCategories = subCategories;
+        this.categoryToProducts = new ArrayList<>();
+        this.subCategories = new ArrayList<>();
         this.exhibition = exhibition;
     }
 
     public void setParent(Category category) {
         this.parent = category;
+    }
+
+    public void setSubCategories(List<Category> subCategories) {
+        this.subCategories = subCategories;
     }
 
     public void addSubCategory(Category category) {
@@ -60,10 +63,10 @@ public class Category {
         subCategories.remove(category);
     }
 
-    public void includeInExhibition(Exhibition exhibition) {
+    public void setExhibition(Exhibition exhibition) {
         this.exhibition = exhibition;
         for (Category subCategory : subCategories) {
-            subCategory.includeInExhibition(exhibition);
+            subCategory.setExhibition(exhibition);
         }
     }
 }

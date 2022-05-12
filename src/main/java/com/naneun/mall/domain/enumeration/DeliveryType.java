@@ -1,4 +1,4 @@
-package com.naneun.mall.domain.value;
+package com.naneun.mall.domain.enumeration;
 
 public enum DeliveryType {
     GENERAL, FAST

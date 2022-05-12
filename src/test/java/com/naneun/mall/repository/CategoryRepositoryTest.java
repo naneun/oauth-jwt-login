@@ -1,12 +1,11 @@
 package com.naneun.mall.repository;
 
-import com.naneun.mall.domain.entity.done.Category;
+import com.naneun.mall.domain.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +26,6 @@ class CategoryRepositoryTest {
     void 입력_테스트() {
         Category mainCategory3 = Category.builder()
                 .title("상위_카테고리3")
-                .subCategories(new ArrayList<>())
                 .build();
 
         Category subCategory3_1 = Category.builder()
@@ -40,7 +38,6 @@ class CategoryRepositoryTest {
 
         Category mainCategory4 = Category.builder()
                 .title("상위_카테고리4")
-                .subCategories(new ArrayList<>())
                 .build();
 
         Category subCategory4_1 = Category.builder()
@@ -55,34 +52,34 @@ class CategoryRepositoryTest {
         mainCategory3.addSubCategory(subCategory3_2);
 
         categoryRepository.save(mainCategory3);
-        Optional<Category> mainCategory1Result = categoryRepository.findById(mainCategory3.getId());
+        Optional<Category> mainCategory3Result = categoryRepository.findById(mainCategory3.getId());
 
         mainCategory4.addSubCategory(subCategory4_1);
         mainCategory4.addSubCategory(subCategory4_2);
 
         categoryRepository.save(mainCategory4);
-        Optional<Category> mainCategory2Result = categoryRepository.findById(mainCategory4.getId());
+        Optional<Category> mainCategory4Result = categoryRepository.findById(mainCategory4.getId());
 
-        assertThat(mainCategory1Result).isNotEmpty();
-        assertThat(mainCategory2Result).isNotEmpty();
+        assertThat(mainCategory3Result).isNotEmpty();
+        assertThat(mainCategory4Result).isNotEmpty();
 
-        mainCategory3 = mainCategory1Result.get();
-        mainCategory4 = mainCategory2Result.get();
+        mainCategory3 = mainCategory3Result.get();
+        mainCategory4 = mainCategory4Result.get();
 
         assertThat(mainCategory3.getId()).isEqualTo(7L);
         assertThat(mainCategory3.getTitle()).isEqualTo("상위_카테고리3");
         assertThat(mainCategory3.getParent()).isNull();
 
-        List<Category> subCategoriesInMainCategory1 = mainCategory3.getSubCategories();
+        List<Category> subCategoriesInMainCategory3 = mainCategory3.getSubCategories();
 
-        assertThat(subCategoriesInMainCategory1.size()).isEqualTo(2);
+        assertThat(subCategoriesInMainCategory3.size()).isEqualTo(2);
 
-        subCategory3_1 = subCategoriesInMainCategory1.get(0);
+        subCategory3_1 = subCategoriesInMainCategory3.get(0);
         assertThat(subCategory3_1.getId()).isEqualTo(8L);
         assertThat(subCategory3_1.getTitle()).isEqualTo("하위_카테고리3_1");
         assertThat(subCategory3_1.getParent()).isEqualTo(mainCategory3);
 
-        subCategory3_2 = subCategoriesInMainCategory1.get(1);
+        subCategory3_2 = subCategoriesInMainCategory3.get(1);
         assertThat(subCategory3_2.getId()).isEqualTo(9L);
         assertThat(subCategory3_2.getTitle()).isEqualTo("하위_카테고리3_2");
         assertThat(subCategory3_2.getParent()).isEqualTo(mainCategory3);
@@ -91,16 +88,16 @@ class CategoryRepositoryTest {
         assertThat(mainCategory4.getTitle()).isEqualTo("상위_카테고리4");
         assertThat(mainCategory4.getParent()).isNull();
 
-        List<Category> subCategoriesInMainCategory2 = mainCategory4.getSubCategories();
+        List<Category> subCategoriesInMainCategory4 = mainCategory4.getSubCategories();
 
-        assertThat(subCategoriesInMainCategory2.size()).isEqualTo(2);
+        assertThat(subCategoriesInMainCategory4.size()).isEqualTo(2);
 
-        subCategory4_1 = subCategoriesInMainCategory2.get(0);
+        subCategory4_1 = subCategoriesInMainCategory4.get(0);
         assertThat(subCategory4_1.getId()).isEqualTo(11L);
         assertThat(subCategory4_1.getTitle()).isEqualTo("하위_카테고리4_1");
         assertThat(subCategory4_1.getParent()).isEqualTo(mainCategory4);
 
-        subCategory4_2 = subCategoriesInMainCategory2.get(1);
+        subCategory4_2 = subCategoriesInMainCategory4.get(1);
         assertThat(subCategory4_2.getId()).isEqualTo(12L);
         assertThat(subCategory4_2.getTitle()).isEqualTo("하위_카테고리4_2");
         assertThat(subCategory4_2.getParent()).isEqualTo(mainCategory4);

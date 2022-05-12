@@ -1,9 +1,10 @@
-package com.naneun.mall.domain.entity.done;
+package com.naneun.mall.domain.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,33 +21,31 @@ public class Exhibition {
     @NotEmpty
     private String title;
 
-    @OneToMany(mappedBy = "exhibition", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "exhibition", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Category> categories;
 
     @Builder
-    public Exhibition(Long id, String title, List<Category> categories) {
+    public Exhibition(Long id, String title) {
         this.id = id;
         this.title = title;
-        this.categories = categories;
+        this.categories = new ArrayList<>();
     }
 
-    public static Exhibition of(String title, List<Category> categories) {
+    public static Exhibition of(String title) {
         return Exhibition.builder()
                 .title(title)
-                .categories(categories)
                 .build();
     }
 
-    public static Exhibition of(Long id, String title, List<Category> categories) {
+    public static Exhibition of(Long id, String title) {
         return Exhibition.builder()
                 .id(id)
                 .title(title)
-                .categories(categories)
                 .build();
     }
 
     public void addCategory(Category category) {
         categories.add(category);
-        category.includeInExhibition(this);
+        category.setExhibition(this);
     }
 }
