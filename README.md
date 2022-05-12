@@ -8,4 +8,4 @@
 - 5/12 Spring Data JPA, QueryDSL 학습 및 엔티티, 레포지토리 설계
 
 # 테이블 설계도
-![Untitled Diagram drawio (8)](https://user-images.githubusercontent.com/47964708/167976545-12a1251b-ee38-4498-8b2a-6825a8dcd92e.png)
+![Untitled Diagram drawio (9)](https://user-images.githubusercontent.com/47964708/168018775-1fa5031f-3c4a-4c2b-9cf1-a2806d5b13b8.png)  
