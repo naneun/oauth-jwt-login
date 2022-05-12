@@ -9,3 +9,5 @@
 
 # 테이블 설계도
 ![Untitled Diagram drawio (9)](https://user-images.githubusercontent.com/47964708/168018775-1fa5031f-3c4a-4c2b-9cf1-a2806d5b13b8.png)  
+
+- delivery_area: `값 타입 컬렉션`을 사용해보기 위해 '다대다'로 연관관계를 맺지 않았습니다.
