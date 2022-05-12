@@ -28,6 +28,6 @@ public class Member {
     @NotEmpty
     private String resourceServer;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<OrderSheet> orderSheets;
 }

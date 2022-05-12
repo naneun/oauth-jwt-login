@@ -21,7 +21,7 @@ public class Exhibition {
     @NotEmpty
     private String title;
 
-    @OneToMany(mappedBy = "exhibition", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "exhibition", cascade = CascadeType.ALL)
     private List<Category> categories;
 
     @Builder

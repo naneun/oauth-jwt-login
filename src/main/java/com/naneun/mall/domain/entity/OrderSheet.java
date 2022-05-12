@@ -31,7 +31,7 @@ public class OrderSheet {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "orderSheet", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "orderSheet", cascade = CascadeType.ALL)
     private List<OrderSheetToProduct> orderSheetToProducts;
 
     @ManyToOne(fetch = FetchType.LAZY)

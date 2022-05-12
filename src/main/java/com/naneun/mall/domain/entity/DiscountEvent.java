@@ -21,7 +21,7 @@ public class DiscountEvent {
 
     private double discountRate;
 
-    @OneToMany(mappedBy = "discountEvent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "discountEvent", cascade = CascadeType.ALL)
     private List<ProductToDiscountEvent> productToDiscountEvents;
 
     @Builder
