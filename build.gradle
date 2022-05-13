@@ -20,14 +20,39 @@ dependencies {
     /* Spring-DATA-JPA */
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.7'
 
+    /* Spring-Validation */
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.6.7'
+
+    /* AssertJ */
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.assertj:assertj-core:3.22.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
+
     /* MySQL */
     runtimeOnly 'mysql:mysql-connector-java'
 
     /* Lombok */
     implementation 'org.projectlombok:lombok'
     annotationProcessor "org.projectlombok:lombok"
+
+    /* QueryDsL */
+    implementation 'com.querydsl:querydsl-jpa'
+
+    annotationProcessor(
+            'com.querydsl:querydsl-apt',
+            'jakarta.persistence:jakarta.persistence-api',
+            'jakarta.annotation:jakarta.annotation-api'
+    )
 }
 
 test {
     useJUnitPlatform()
+}
+
+sourceSets {
+    main.java.srcDir "$buildDir/generated/querydsl"
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
 }

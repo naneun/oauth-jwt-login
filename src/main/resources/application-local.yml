@@ -4,3 +4,7 @@ spring:
     url: jdbc:mysql://localhost:3307/testdb
     username: root
     password: test
+
+  sql:
+    init:
+      mode: always
