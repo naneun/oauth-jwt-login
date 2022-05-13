@@ -17,14 +17,14 @@ public class ProductImage {
 
     private String imageUrl;
 
-    private String imageSeq;
+    private int imageSeq;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Product product;
 
     @Builder
-    private ProductImage(Long id, String imageUrl, String imageSeq, Product product) {
+    private ProductImage(Long id, String imageUrl, int imageSeq, Product product) {
         this.id = id;
         this.imageUrl = imageUrl;
         this.imageSeq = imageSeq;
@@ -33,6 +33,10 @@ public class ProductImage {
 
     public void changeImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public void changeImageSeq(int imageSeq) {
+        this.imageSeq = imageSeq;
     }
 
     public void changeProduct(Product product) {

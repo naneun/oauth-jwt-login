@@ -36,4 +36,12 @@ public class OrderSheetToProduct {
         this.price = price;
         this.count = count;
     }
+
+    public void changeOrderSheet(OrderSheet orderSheet) {
+        this.orderSheet = orderSheet;
+    }
+
+    public void changeProduct(Product product) {
+        this.product = product;
+    }
 }

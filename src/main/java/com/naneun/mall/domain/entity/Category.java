@@ -46,21 +46,8 @@ public class Category {
         this.exhibition = exhibition;
     }
 
-    public void setParent(Category category) {
+    public void changeParent(Category category) {
         this.parent = category;
-    }
-
-    public void setSubCategories(List<Category> subCategories) {
-        this.subCategories = subCategories;
-    }
-
-    public void addSubCategory(Category category) {
-        subCategories.add(category);
-        category.setParent(this);
-    }
-
-    public void removeSubCategory(Category category) {
-        subCategories.remove(category);
     }
 
     public void changeExhibition(Exhibition exhibition) {
@@ -68,5 +55,19 @@ public class Category {
         for (Category subCategory : subCategories) {
             subCategory.changeExhibition(exhibition);
         }
+    }
+
+    public void changeSubCategories(List<Category> subCategories) {
+        this.subCategories = subCategories;
+    }
+
+    public void addSubCategory(Category category) {
+        subCategories.add(category);
+        category.changeParent(this);
+    }
+
+    public void removeSubCategory(Category category) {
+        subCategories.remove(category);
+        category.changeParent(null);
     }
 }

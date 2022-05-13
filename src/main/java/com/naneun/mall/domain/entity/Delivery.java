@@ -30,4 +30,16 @@ public class Delivery {
         this.fee = fee;
         this.freeCondition = freeCondition;
     }
+
+    public void changeDeliveryType(DeliveryType deliveryType) {
+        this.deliveryType = deliveryType;
+    }
+
+    public void changeFee(int fee) {
+        this.fee = fee;
+    }
+
+    public void changeFreeCondition(int freeCondition) {
+        this.freeCondition = freeCondition;
+    }
 }

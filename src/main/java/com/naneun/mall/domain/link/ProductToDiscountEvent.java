@@ -1,6 +1,7 @@
 package com.naneun.mall.domain.link;
 
 import com.naneun.mall.domain.entity.DiscountEvent;
+import com.naneun.mall.domain.entity.OrderSheet;
 import com.naneun.mall.domain.entity.Product;
 import lombok.*;
 
@@ -28,6 +29,14 @@ public class ProductToDiscountEvent {
     private ProductToDiscountEvent(Long id, Product product, DiscountEvent discountEvent) {
         this.id = id;
         this.product = product;
+        this.discountEvent = discountEvent;
+    }
+
+    public void changeProduct(Product product) {
+        this.product = product;
+    }
+
+    public void changeDiscountEvent(DiscountEvent discountEvent) {
         this.discountEvent = discountEvent;
     }
 }

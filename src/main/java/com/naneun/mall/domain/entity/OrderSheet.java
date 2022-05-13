@@ -41,15 +41,32 @@ public class OrderSheet {
     private Delivery delivery;
 
     @Builder
-    private OrderSheet(Long id, DeliveryStatus deliveryStatus, int totalPrice, LocalDateTime createdAt,
-                       Member member, Delivery delivery) {
-
+    private OrderSheet(Long id, int totalPrice, Member member, Delivery delivery) {
         this.id = id;
-        this.deliveryStatus = deliveryStatus;
+        this.deliveryStatus = DeliveryStatus.READY;
         this.totalPrice = totalPrice;
-        this.createdAt = createdAt;
         this.orderSheetToProducts = new ArrayList<>();
         this.member = member;
         this.delivery = delivery;
+    }
+
+    public static OrderSheet of(int totalPrice, Member member, Delivery delivery,
+                                OrderSheetToProduct... orderSheetToProducts) {
+
+        OrderSheet orderSheet = OrderSheet.builder()
+                .totalPrice(totalPrice)
+                .member(member)
+                .delivery(delivery)
+                .build();
+
+        for (OrderSheetToProduct orderSheetToProduct: orderSheetToProducts) {
+            orderSheet.addOrderSheetToProducts(orderSheetToProduct);
+        }
+
+        return orderSheet;
+    }
+
+    public void addOrderSheetToProducts(OrderSheetToProduct orderSheetToProduct) {
+        orderSheetToProducts.add(orderSheetToProduct);
     }
 }

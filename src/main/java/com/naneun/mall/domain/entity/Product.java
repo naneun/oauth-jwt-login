@@ -80,10 +80,12 @@ public class Product {
 
     public void addCategoryToProduct(CategoryToProduct categoryToProduct) {
         categoryToProducts.add(categoryToProduct);
+        categoryToProduct.changeProduct(this);
     }
 
     public void removeCategoryToProduct(CategoryToProduct categoryToProduct) {
         categoryToProducts.remove(categoryToProduct);
+        categoryToProduct.changeProduct(null);
     }
 
     /* ProductImage */
@@ -102,9 +104,11 @@ public class Product {
 
     public void addProductToDiscountEvent(ProductToDiscountEvent productToDiscountEvent) {
         productToDiscountEvents.add(productToDiscountEvent);
+        productToDiscountEvent.changeProduct(this);
     }
 
     public void removeProductToDiscountEvent(ProductToDiscountEvent productToDiscountEvent) {
         productToDiscountEvents.remove(productToDiscountEvent);
+        productToDiscountEvent.changeProduct(null);
     }
 }

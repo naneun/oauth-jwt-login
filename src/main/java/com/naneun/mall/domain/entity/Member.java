@@ -41,4 +41,8 @@ public class Member {
         this.resourceServer = resourceServer;
         this.orderSheets = new ArrayList<>();
     }
+
+    public void changeRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
 }

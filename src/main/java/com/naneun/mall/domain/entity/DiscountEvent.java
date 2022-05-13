@@ -4,6 +4,7 @@ import com.naneun.mall.domain.link.ProductToDiscountEvent;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,7 +22,7 @@ public class DiscountEvent {
 
     private double discountRate;
 
-    @OneToMany(mappedBy = "discountEvent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "discountEvent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductToDiscountEvent> productToDiscountEvents;
 
     @Builder
@@ -29,5 +30,24 @@ public class DiscountEvent {
         this.id = id;
         this.title = title;
         this.discountRate = discountRate;
+        this.productToDiscountEvents = new ArrayList<>();
+    }
+
+    public void modifyTitle(String title) {
+        this.title = title;
+    }
+
+    public void changeDiscountRate(double discountRate) {
+        this.discountRate = discountRate;
+    }
+
+    public void addProductToDiscountEvent(ProductToDiscountEvent productToDiscountEvent) {
+        productToDiscountEvents.add(productToDiscountEvent);
+        productToDiscountEvent.changeDiscountEvent(this);
+    }
+
+    public void removeProductToDiscountEvent(ProductToDiscountEvent productToDiscountEvent) {
+        productToDiscountEvents.remove(productToDiscountEvent);
+        productToDiscountEvent.changeDiscountEvent(null);
     }
 }

@@ -31,8 +31,17 @@ public class Exhibition {
         this.categories = new ArrayList<>();
     }
 
+    public void modifyTitle(String title) {
+        this.title = title;
+    }
+
     public void addCategory(Category category) {
         categories.add(category);
         category.changeExhibition(this);
+    }
+
+    public void removeCategory(Category category) {
+        categories.remove(category);
+        category.changeExhibition(null);
     }
 }
