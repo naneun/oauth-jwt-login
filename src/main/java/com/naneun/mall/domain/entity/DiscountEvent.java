@@ -25,7 +25,7 @@ public class DiscountEvent {
     private List<ProductToDiscountEvent> productToDiscountEvents;
 
     @Builder
-    public DiscountEvent(Long id, String title, double discountRate) {
+    private DiscountEvent(Long id, String title, double discountRate) {
         this.id = id;
         this.title = title;
         this.discountRate = discountRate;

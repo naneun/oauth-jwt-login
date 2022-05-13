@@ -37,7 +37,7 @@ public class Category {
     private List<Category> subCategories;
 
     @Builder
-    public Category(Long id, String title, Category parent, Exhibition exhibition) {
+    private Category(Long id, String title, Category parent, Exhibition exhibition) {
         this.id = id;
         this.title = title;
         this.parent = parent;
@@ -63,10 +63,10 @@ public class Category {
         subCategories.remove(category);
     }
 
-    public void setExhibition(Exhibition exhibition) {
+    public void changeExhibition(Exhibition exhibition) {
         this.exhibition = exhibition;
         for (Category subCategory : subCategories) {
-            subCategory.setExhibition(exhibition);
+            subCategory.changeExhibition(exhibition);
         }
     }
 }

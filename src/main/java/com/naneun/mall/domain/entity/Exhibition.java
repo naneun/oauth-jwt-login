@@ -25,27 +25,14 @@ public class Exhibition {
     private List<Category> categories;
 
     @Builder
-    public Exhibition(Long id, String title) {
+    private Exhibition(Long id, String title) {
         this.id = id;
         this.title = title;
         this.categories = new ArrayList<>();
     }
 
-    public static Exhibition of(String title) {
-        return Exhibition.builder()
-                .title(title)
-                .build();
-    }
-
-    public static Exhibition of(Long id, String title) {
-        return Exhibition.builder()
-                .id(id)
-                .title(title)
-                .build();
-    }
-
     public void addCategory(Category category) {
         categories.add(category);
-        category.setExhibition(this);
+        category.changeExhibition(this);
     }
 }

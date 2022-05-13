@@ -2,10 +2,7 @@ package com.naneun.mall.domain.link;
 
 import com.naneun.mall.domain.entity.DiscountEvent;
 import com.naneun.mall.domain.entity.Product;
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -26,4 +23,11 @@ public class ProductToDiscountEvent {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private DiscountEvent discountEvent;
+
+    @Builder
+    private ProductToDiscountEvent(Long id, Product product, DiscountEvent discountEvent) {
+        this.id = id;
+        this.product = product;
+        this.discountEvent = discountEvent;
+    }
 }

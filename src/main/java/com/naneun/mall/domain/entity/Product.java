@@ -41,7 +41,7 @@ public class Product {
     private LocalDateTime modifiedAt;
 
     @Builder
-    public Product(Long id, String name, String description, int price, int stock) {
+    private Product(Long id, String name, String description, int price, int stock) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -52,16 +52,59 @@ public class Product {
         this.productToDiscountEvents = new ArrayList<>();
     }
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<ProductImage> productImages;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CategoryToProduct> categoryToProducts;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductImage> productImages;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductToDiscountEvent> productToDiscountEvents;
 
     @ElementCollection
     @CollectionTable(name = "excluded_area", joinColumns = @JoinColumn(name = "product_id"))
     private List<ExcludedArea> excludedAreas;
+
+    /* Stock */
+
+    public void addStock(int quantity) {
+        stock += quantity;
+    }
+
+    public void removeStock(int quantity) {
+        // TODO
+        stock -= quantity;
+    }
+
+    /* CategoryToProduct */
+
+    public void addCategoryToProduct(CategoryToProduct categoryToProduct) {
+        categoryToProducts.add(categoryToProduct);
+    }
+
+    public void removeCategoryToProduct(CategoryToProduct categoryToProduct) {
+        categoryToProducts.remove(categoryToProduct);
+    }
+
+    /* ProductImage */
+
+    public void addProductImage(ProductImage productImage) {
+        productImages.add(productImage);
+        productImage.changeProduct(this);
+    }
+
+    public void removeProductImage(ProductImage productImage) {
+        productImages.remove(productImage);
+        productImage.changeProduct(null);
+    }
+
+    /* ProductToDiscountEvent */
+
+    public void addProductToDiscountEvent(ProductToDiscountEvent productToDiscountEvent) {
+        productToDiscountEvents.add(productToDiscountEvent);
+    }
+
+    public void removeProductToDiscountEvent(ProductToDiscountEvent productToDiscountEvent) {
+        productToDiscountEvents.remove(productToDiscountEvent);
+    }
 }

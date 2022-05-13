@@ -2,10 +2,7 @@ package com.naneun.mall.domain.link;
 
 import com.naneun.mall.domain.entity.Category;
 import com.naneun.mall.domain.entity.Product;
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -26,4 +23,19 @@ public class CategoryToProduct {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Product product;
+
+    @Builder
+    private CategoryToProduct(Long id, Category category, Product product) {
+        this.id = id;
+        this.category = category;
+        this.product = product;
+    }
+
+    public void changeCategory(Category category) {
+        this.category = category;
+    }
+
+    public void changeProduct(Product product) {
+        this.product = product;
+    }
 }

@@ -2,10 +2,7 @@ package com.naneun.mall.domain.link;
 
 import com.naneun.mall.domain.entity.OrderSheet;
 import com.naneun.mall.domain.entity.Product;
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -30,4 +27,13 @@ public class OrderSheetToProduct {
     private int price;
 
     private int count;
+
+    @Builder
+    private OrderSheetToProduct(Long id, OrderSheet orderSheet, Product product, int price, int count) {
+        this.id = id;
+        this.orderSheet = orderSheet;
+        this.product = product;
+        this.price = price;
+        this.count = count;
+    }
 }

@@ -22,4 +22,20 @@ public class ProductImage {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Product product;
+
+    @Builder
+    private ProductImage(Long id, String imageUrl, String imageSeq, Product product) {
+        this.id = id;
+        this.imageUrl = imageUrl;
+        this.imageSeq = imageSeq;
+        this.product = product;
+    }
+
+    public void changeImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void changeProduct(Product product) {
+        this.product = product;
+    }
 }

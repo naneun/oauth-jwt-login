@@ -22,4 +22,12 @@ public class Delivery {
     private int fee;
 
     private int freeCondition;
+
+    @Builder
+    private Delivery(Long id, DeliveryType deliveryType, int fee, int freeCondition) {
+        this.id = id;
+        this.deliveryType = deliveryType;
+        this.fee = fee;
+        this.freeCondition = freeCondition;
+    }
 }
