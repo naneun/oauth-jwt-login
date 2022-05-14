@@ -9,6 +9,7 @@
   - 5/11 활용 2, Spring Data JPA, JWT 학습 및 엔티티 설계, 레포지토리 설계
   - 5/12 Spring Data JPA, QueryDSL 학습 및 엔티티 설계 완료
   - 5/13 엔티티 연관관계 편의 메서드 작성
+  - 5/14 jwt 로그인 기능 구현 (access-token 을 사용하여 `인증`, refresh-token 을 사용하여 access-token `갱신`)
 
 # 테이블 설계도
 ![Untitled Diagram drawio (16)](https://user-images.githubusercontent.com/47964708/168089102-57fa1aef-8466-425b-ae68-3b0441fe0778.png)  
