@@ -1,0 +1,7 @@
+oauth:
+  client-id:
+  client-secret:
+
+jwt:
+  issuer: ${ISSUER}
+  secret-key: ${SECRET_KEY}

@@ -19,7 +19,7 @@ public class Member {
     private Long id;
 
     @NotEmpty
-    private String userId;
+    private String socialId;
 
     private String name;
 
@@ -33,13 +33,17 @@ public class Member {
     private List<OrderSheet> orderSheets;
 
     @Builder
-    private Member(Long id, String userId, String name, String refreshToken, String resourceServer) {
+    private Member(Long id, String socialId, String name, String refreshToken, String resourceServer) {
         this.id = id;
-        this.userId = userId;
+        this.socialId = socialId;
         this.name = name;
         this.refreshToken = refreshToken;
         this.resourceServer = resourceServer;
         this.orderSheets = new ArrayList<>();
+    }
+
+    public boolean isSameRefreshToken(String refreshToken) {
+        return this.refreshToken.equals(refreshToken);
     }
 
     public void changeRefreshToken(String refreshToken) {
