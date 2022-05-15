@@ -1,5 +1,6 @@
 package com.naneun.mall.service;
 
+import com.naneun.mall.auth.dto.ResourceServer;
 import com.naneun.mall.domain.entity.Member;
 import com.naneun.mall.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,5 +14,14 @@ public class MemberService {
 
     public Member updateMember(Member member) {
         return memberRepository.save(member);
+    }
+
+    public Member findMember(String userId, ResourceServer resourceServer) {
+        return memberRepository.findBySocialIdAndResourceServer(userId, resourceServer)
+                .orElseThrow();
+    }
+
+    public boolean existsMember(String userId, ResourceServer resourceServer) {
+        return memberRepository.existsBySocialIdAndResourceServer(userId, resourceServer);
     }
 }

@@ -11,13 +11,10 @@ public class GitHubAccessToken {
     @JsonProperty("access_token")
     private String accessToken;
 
-    @JsonProperty("refresh_token")
-    private String refreshToken;
-
     @JsonProperty("token_type")
     private String tokenType;
 
     public OAuthAccessToken toEntity() {
-        return OAuthAccessToken.of(accessToken, refreshToken, tokenType);
+        return OAuthAccessToken.of(accessToken, null, tokenType);
     }
 }

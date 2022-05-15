@@ -56,7 +56,7 @@ public class JwtTokenProvider {
     }
 
     public DecodedJWT decodeToken(String jwt) {
-         return JWT.decode(jwt);
+        return JWT.decode(jwt);
     }
 
     public DecodedJWT verifyToken(String jwt) {

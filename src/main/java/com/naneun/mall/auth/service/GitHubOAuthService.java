@@ -1,5 +1,6 @@
 package com.naneun.mall.auth.service;
 
+import com.naneun.mall.auth.dto.GitHubAccessTokenRequest;
 import com.naneun.mall.auth.dto.GitHubUser;
 import com.naneun.mall.auth.dto.OAuthAccessToken;
 import com.naneun.mall.auth.dto.GitHubAccessToken;
@@ -7,8 +8,6 @@ import com.naneun.mall.auth.properties.OAuthProperties;
 import com.naneun.mall.domain.entity.Member;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Service("github")
@@ -32,15 +31,10 @@ public class GitHubOAuthService implements OAuthService {
     @Override
     public OAuthAccessToken requestAccessToken(String code) {
 
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add(CODE, code);
-        params.add(CLIENT_ID, clientId);
-        params.add(CLIENT_SECRET, clientSecret);
-
         GitHubAccessToken gitHubAccessToken = webClient.post()
                 .uri(accessTokenUri)
                 .accept(MediaType.APPLICATION_JSON)
-                .bodyValue(params)
+                .bodyValue(GitHubAccessTokenRequest.of(code, clientId, clientSecret))
                 .retrieve()
                 .bodyToMono(GitHubAccessToken.class)
                 .blockOptional()

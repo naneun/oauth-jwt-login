@@ -38,6 +38,11 @@ public class LoginController {
         OAuthService oAuthService = oAuthServices.get(resourceServer);
         OAuthAccessToken oAuthAccessToken = oAuthService.requestAccessToken(code);
         Member member = oAuthService.requestUserInfo(oAuthAccessToken);
+
+        if (memberService.existsMember(member.getSocialId(), member.getResourceServer())) {
+            member = memberService.findMember(member.getSocialId(), member.getResourceServer());
+        }
+
         member = memberService.updateMember(member);
 
         String jwtAccessToken = jwtTokenProvider.issueAccessToken(member);
