@@ -18,3 +18,6 @@
   - 2022.05.11 - delivery_area: `값 타입 컬렉션`을 사용해보기 위해 '다대다'로 연관관계를 맺지 않았습니다.
   - 2022.05.12 - 다대다 연관관계를 사용하지 않은 근거가 필요하여 delivery_area -> excluded_area 변경
   - 2022.05.15 - 어플리케이션이 서버 입장에서 `jwt_refresh_token` 을, 클라이언트 입장에서 `oauth_access_token`, `oauth_refresh_token` 을 저장하고 있도록 member 테이블에 칼럼 추가
+
+- ## 참고사항
+  - 2022.05.15 - GitHub 의 경우, Refresh-Token 이 따로 존재하지 않고 Access-Token 의 만료기간 또한 존재하지 않는다.
