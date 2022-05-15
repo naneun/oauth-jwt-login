@@ -13,8 +13,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.naneun.mall.auth.utils.OAuthUtils.BEARER;
-import static com.naneun.mall.auth.utils.OAuthUtils.SOCIAL_ID;
+import static com.naneun.mall.auth.utils.OAuthUtils.*;
 
 @Component
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         try {
             String accessToken = authorizationHeader.replaceFirst(BEARER, Strings.EMPTY).trim();
             DecodedJWT decodedJWT = jwtTokenProvider.verifyToken(accessToken);
-            request.setAttribute(SOCIAL_ID, jwtTokenProvider.getUserId(decodedJWT));
+            request.setAttribute(USER_ID, jwtTokenProvider.getUserId(decodedJWT));
         } catch (TokenExpiredException e) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             return false;

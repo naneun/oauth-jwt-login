@@ -69,6 +69,6 @@ public class JwtTokenProvider {
     }
 
     public Long getUserId(DecodedJWT decodedJWT) {
-        return decodedJWT.getClaim(SOCIAL_ID).asLong();
+        return Long.parseLong(decodedJWT.getAudience().get(0));
     }
 }

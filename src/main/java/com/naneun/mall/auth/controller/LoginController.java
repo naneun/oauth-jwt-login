@@ -29,8 +29,8 @@ import static com.naneun.mall.auth.utils.OAuthUtils.ACCESS_TOKEN;
 public class LoginController {
 
     private final JwtTokenProvider jwtTokenProvider;
+
     private final LoginService loginService;
-    private final MemberService memberService;
     private final Map<String, OAuthService> oAuthServices;
 
     @GetMapping("/{resource-server}/callback")
@@ -39,18 +39,7 @@ public class LoginController {
         OAuthAccessToken oAuthAccessToken = oAuthService.requestAccessToken(code);
         Member member = oAuthService.requestUserInfo(oAuthAccessToken);
 
-        if (memberService.existsMember(member.getSocialId(), member.getResourceServer())) {
-            member = memberService.findMember(member.getSocialId(), member.getResourceServer());
-        }
-
-        member = memberService.updateMember(member);
-
-        String jwtAccessToken = jwtTokenProvider.issueAccessToken(member);
-        String jwtRefreshToken = jwtTokenProvider.issueRefreshToken(member);
-        member.changeJwtRefreshToken(jwtRefreshToken);
-        member = memberService.updateMember(member);
-
-        return LoginResponse.of(member.getSocialId(), jwtAccessToken, jwtRefreshToken);
+        return loginService.login(member);
     }
 
     @GetMapping("/update/access-token")

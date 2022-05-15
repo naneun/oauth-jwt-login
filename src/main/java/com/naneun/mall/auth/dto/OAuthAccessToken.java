@@ -5,11 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Embeddable;
-
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Embeddable
 public class OAuthAccessToken {
 
     private String oAuthAccessToken;
