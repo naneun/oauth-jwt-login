@@ -12,7 +12,9 @@
   - 5/14 jwt 로그인 기능 구현 (access-token 을 사용하여 `인증`, refresh-token 을 사용하여 access-token `갱신`)
 
 # 테이블 설계도
-![Untitled Diagram drawio (16)](https://user-images.githubusercontent.com/47964708/168089102-57fa1aef-8466-425b-ae68-3b0441fe0778.png)  
+![Untitled Diagram drawio (20)](https://user-images.githubusercontent.com/47964708/168468785-e8ed36dc-5091-4628-9995-8236e5210f9d.png)  
 
-- ~delivery_area: `값 타입 컬렉션`을 사용해보기 위해 '다대다'로 연관관계를 맺지 않았습니다.~
-- 다대다 연관관계를 사용하지 않은 근거가 필요하여 delivery_area -> excluded_area 변경 (2022.05.12)
+- ## 수정사항
+  - 2022.05.11 - delivery_area: `값 타입 컬렉션`을 사용해보기 위해 '다대다'로 연관관계를 맺지 않았습니다.
+  - 2022.05.12 - 다대다 연관관계를 사용하지 않은 근거가 필요하여 delivery_area -> excluded_area 변경
+  - 2022.05.15 - 어플리케이션이 서버 입장에서 `jwt_refresh_token` 을, 클라이언트 입장에서 `oauth_access_token`, `oauth_refresh_token` 을 저장하고 있도록 member 테이블에 칼럼 추가
