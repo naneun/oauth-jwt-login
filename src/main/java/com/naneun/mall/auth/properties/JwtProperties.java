@@ -1,6 +1,8 @@
-package com.naneun.mall.properties;
+package com.naneun.mall.auth.properties;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 
@@ -9,7 +11,7 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 @RequiredArgsConstructor
 @ConstructorBinding
 @ConfigurationProperties(prefix = "jwt")
-public class JwtTokenProperties {
+public class JwtProperties {
 
     private final String issuer;
     private final String secretKey;

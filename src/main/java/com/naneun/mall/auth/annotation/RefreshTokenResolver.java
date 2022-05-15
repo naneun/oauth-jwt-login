@@ -1,4 +1,4 @@
-package com.naneun.mall.auth;
+package com.naneun.mall.auth.annotation;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -9,14 +9,14 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static com.naneun.mall.auth.OAuthUtils.*;
+import static com.naneun.mall.auth.utils.OAuthUtils.*;
 
 @Component
 public class RefreshTokenResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(RefreshToken.class);
+        return parameter.hasParameterAnnotation(RefreshTokenParam.class);
     }
 
     @Override

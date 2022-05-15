@@ -1,10 +1,11 @@
-package com.naneun.mall.interceptor;
+package com.naneun.mall.auth.interceptor;
 
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.naneun.mall.provider.JwtTokenProvider;
+import com.naneun.mall.auth.provider.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -12,11 +13,12 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.naneun.mall.auth.OAuthUtils.*;
+import static com.naneun.mall.auth.utils.OAuthUtils.BEARER;
+import static com.naneun.mall.auth.utils.OAuthUtils.SOCIAL_ID;
 
 @Component
 @RequiredArgsConstructor
-public class JwtTokenInterceptor implements HandlerInterceptor {
+public class JwtInterceptor implements HandlerInterceptor {
 
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -26,7 +28,7 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
     }
 
     private boolean verifyJwtToken(HttpServletRequest request, HttpServletResponse response) {
-        String authorizationHeader = request.getHeader(AUTHORIZATION);
+        String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         if (!Strings.isNotBlank(authorizationHeader) || !authorizationHeader.startsWith(BEARER)) {
             response.setStatus(HttpStatus.FORBIDDEN.value());
@@ -36,7 +38,7 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
         try {
             String accessToken = authorizationHeader.replaceFirst(BEARER, Strings.EMPTY).trim();
             DecodedJWT decodedJWT = jwtTokenProvider.verifyToken(accessToken);
-            request.setAttribute(USER_ID, jwtTokenProvider.getUserId(decodedJWT));
+            request.setAttribute(SOCIAL_ID, jwtTokenProvider.getUserId(decodedJWT));
         } catch (TokenExpiredException e) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             return false;
