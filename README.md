@@ -22,3 +22,5 @@
 
 - ## 참고사항
   - ~2022.05.15 - GitHub 의 경우, Refresh-Token 이 따로 존재하지 않고 Access-Token 의 만료기간 또한 존재하지 않는다.~
+> ![SmartSelectImage_2022-05-16-04-27-08](https://user-images.githubusercontent.com/47964708/168490486-e473ac2b-9296-45c2-b68a-49d1b9cbf15f.png) 
+> ![SmartSelectImage_2022-05-16-04-26-48](https://user-images.githubusercontent.com/47964708/168490490-c633428b-cad9-41d0-8c85-1b63d25160f6.png)  
