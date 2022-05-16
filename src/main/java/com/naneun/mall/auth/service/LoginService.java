@@ -1,7 +1,7 @@
 package com.naneun.mall.auth.service;
 
-import com.naneun.mall.auth.dto.LoginResponse;
-import com.naneun.mall.auth.dto.ResourceServer;
+import com.naneun.mall.auth.dto.common.LoginResponse;
+import com.naneun.mall.auth.dto.common.ResourceServer;
 import com.naneun.mall.auth.provider.JwtTokenProvider;
 import com.naneun.mall.domain.entity.Member;
 import com.naneun.mall.repository.MemberRepository;

@@ -1,9 +1,9 @@
 package com.naneun.mall.auth.service;
 
-import com.naneun.mall.auth.dto.*;
+import com.naneun.mall.auth.dto.common.OAuthAccessToken;
 import com.naneun.mall.auth.dto.github.GitHubAccessToken;
 import com.naneun.mall.auth.dto.github.GitHubAccessTokenRequest;
-import com.naneun.mall.auth.dto.github.GitHubRefreshTokenRequest;
+import com.naneun.mall.auth.dto.github.GitHubAccessTokenRenewRequest;
 import com.naneun.mall.auth.dto.github.GitHubUser;
 import com.naneun.mall.auth.properties.OAuthProperties;
 import com.naneun.mall.domain.entity.Member;
@@ -45,7 +45,7 @@ public class GitHubOAuthService implements OAuthService {
             gitHubAccessToken = webClient.post()
                     .uri(accessTokenUri)
                     .accept(MediaType.APPLICATION_JSON)
-                    .bodyValue(GitHubRefreshTokenRequest.of(clientId, clientSecret))
+                    .bodyValue(GitHubAccessTokenRenewRequest.of(clientId, clientSecret))
                     .retrieve()
                     .bodyToMono(GitHubAccessToken.class)
                     .blockOptional()

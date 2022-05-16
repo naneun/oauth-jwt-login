@@ -1,14 +1,14 @@
 package com.naneun.mall.auth.dto.github;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.naneun.mall.auth.dto.OAuthAccessToken;
+import com.naneun.mall.auth.dto.common.OAuthAccessToken;
 import com.naneun.mall.domain.entity.Member;
 import lombok.Getter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotEmpty;
 
-import static com.naneun.mall.auth.dto.ResourceServer.GITHUB;
+import static com.naneun.mall.auth.dto.common.ResourceServer.GITHUB;
 
 @Getter
 @ToString

@@ -1,13 +1,15 @@
-package com.naneun.mall.auth.dto.github;
+package com.naneun.mall.auth.dto.google;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class GitHubRefreshTokenRequest {
+public class GoogleAccessTokenRenewRequest {
 
     private final String clientId;
     private final String clientSecret;
@@ -15,19 +17,18 @@ public class GitHubRefreshTokenRequest {
     private final String grantType;
 
     @Builder
-    private GitHubRefreshTokenRequest(String clientId, String clientSecret, String refreshToken, String grantType) {
+    private GoogleAccessTokenRenewRequest(String clientId, String clientSecret, String refreshToken) {
         this.clientId = clientId;
         this.clientSecret = clientSecret;
         this.refreshToken = refreshToken;
-        this.grantType = grantType;
+        this.grantType = "refresh_token";
     }
 
-    public static GitHubRefreshTokenRequest of(String clientId, String clientSecret) {
-        return GitHubRefreshTokenRequest.builder()
+    public static GoogleAccessTokenRenewRequest of(String clientId, String clientSecret, String refreshToken) {
+        return GoogleAccessTokenRenewRequest.builder()
                 .clientId(clientId)
                 .clientSecret(clientSecret)
-                .refreshToken(clientSecret)
-                .grantType("refresh_token")
+                .refreshToken(refreshToken)
                 .build();
     }
 }

@@ -1,7 +1,7 @@
 package com.naneun.mall.auth.dto.github;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.naneun.mall.auth.dto.OAuthAccessToken;
+import com.naneun.mall.auth.dto.common.OAuthAccessToken;
 import lombok.Getter;
 import lombok.ToString;
 import org.apache.logging.log4j.util.Strings;

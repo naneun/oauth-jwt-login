@@ -1,6 +1,6 @@
 package com.naneun.mall.domain.entity;
 
-import com.naneun.mall.auth.dto.ResourceServer;
+import com.naneun.mall.auth.dto.common.ResourceServer;
 import lombok.*;
 
 import javax.persistence.*;

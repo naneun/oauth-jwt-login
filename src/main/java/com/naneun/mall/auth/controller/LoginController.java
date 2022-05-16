@@ -4,9 +4,8 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.naneun.mall.auth.annotation.AccessTokenParam;
 import com.naneun.mall.auth.annotation.RefreshTokenParam;
-import com.naneun.mall.auth.dto.LoginResponse;
-import com.naneun.mall.auth.dto.OAuthAccessToken;
-import com.naneun.mall.auth.dto.google.GoogleAccessToken;
+import com.naneun.mall.auth.dto.common.LoginResponse;
+import com.naneun.mall.auth.dto.common.OAuthAccessToken;
 import com.naneun.mall.auth.provider.JwtTokenProvider;
 import com.naneun.mall.auth.service.LoginService;
 import com.naneun.mall.auth.service.OAuthService;
@@ -39,7 +38,7 @@ public class LoginController {
         return loginService.login(member);
     }
 
-    @GetMapping("/update/access-token")
+    @GetMapping("/update/jwt-access-token")
     public void updateJwtAccessToken(@AccessTokenParam String accessToken,
                                      @RefreshTokenParam String refreshToken,
                                      HttpServletResponse response) {
