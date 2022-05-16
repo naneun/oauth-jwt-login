@@ -14,7 +14,7 @@
 
 - ## 2주차
 
-  - 5/13 - 호눅스 백엔드 수업(5/9) 복습 및 구글 OAuth2 로그인 기능 구현
+  - 5/16 - 호눅스 백엔드 수업(5/9) 복습 및 구글 OAuth2 로그인 기능 구현
 
 # 테이블 설계도
 ![Untitled Diagram drawio (20)](https://user-images.githubusercontent.com/47964708/168468785-e8ed36dc-5091-4628-9995-8236e5210f9d.png)  
