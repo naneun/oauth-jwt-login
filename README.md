@@ -9,12 +9,12 @@
   - 5/11 활용 2, Spring Data JPA, JWT 학습 및 엔티티 설계, 레포지토리 설계
   - 5/12 Spring Data JPA, QueryDSL 학습 및 엔티티 설계 완료
   - 5/13 엔티티 연관관계 편의 메서드 작성
-  - 5/14 jwt 로그인 기능 구현 (access-token 을 사용하여 `인증`, refresh-token 을 사용하여 access-token `갱신`)
-  - 5/15 Github OAuth2 로그인 기능 구현
+  - 5/14 jwt 로그인 기능 구현 (access-token 을 사용하여 `인증`, refresh-token 을 사용하여 `만료된` access-token `갱신`)
+  - 5/15 `Github` OAuth2 로그인 기능 구현
 
 - ## 2주차
 
-  - 5/16 - 호눅스 백엔드 수업(5/9) 복습 및 구글 OAuth2 로그인 기능 구현
+  - 5/16 - 호눅스 백엔드 수업(5/9) 복습 및 `Google` OAuth2 로그인 기능(+ refresh-token 을 사용하여 `만료된` access-token `갱신`)
 
 # 테이블 설계도
 ![Untitled Diagram drawio (20)](https://user-images.githubusercontent.com/47964708/168468785-e8ed36dc-5091-4628-9995-8236e5210f9d.png)  
