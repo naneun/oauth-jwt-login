@@ -5,6 +5,11 @@ import com.naneun.mall.domain.entity.Member;
 
 public interface OAuthService {
 
-    OAuthAccessToken requestAccessToken(String code);
-    Member requestUserInfo(OAuthAccessToken accessToken);
+    default OAuthAccessToken requestAccessToken(String code) {
+        return null;
+    }
+
+    default Member requestUserInfo(OAuthAccessToken accessToken) {
+        return null;
+    }
 }

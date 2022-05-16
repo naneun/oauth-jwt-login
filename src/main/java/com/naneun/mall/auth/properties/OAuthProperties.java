@@ -17,4 +17,9 @@ public class OAuthProperties {
     private final String githubClientSecret;
     private final String githubAccessTokenUri;
     private final String githubUserUri;
+
+    private final String googleClientId;
+    private final String googleClientSecret;
+    private final String googleAccessTokenUri;
+    private final String googleUserUri;
 }

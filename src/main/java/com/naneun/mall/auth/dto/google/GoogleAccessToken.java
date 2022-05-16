@@ -1,13 +1,14 @@
-package com.naneun.mall.auth.dto;
+package com.naneun.mall.auth.dto.google;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.naneun.mall.auth.dto.OAuthAccessToken;
 import lombok.Getter;
 import lombok.ToString;
 import org.apache.logging.log4j.util.Strings;
 
 @Getter
 @ToString
-public class GitHubAccessToken {
+public class GoogleAccessToken {
 
     @JsonProperty("access_token")
     private String accessToken;
@@ -17,6 +18,9 @@ public class GitHubAccessToken {
 
     @JsonProperty("token_type")
     private String tokenType;
+
+    @JsonProperty("expires_in")
+    private String expiresIn;
 
     public OAuthAccessToken toEntity() {
         return OAuthAccessToken.of(accessToken, refreshToken, tokenType);

@@ -1,6 +1,10 @@
 package com.naneun.mall.auth.service;
 
 import com.naneun.mall.auth.dto.*;
+import com.naneun.mall.auth.dto.github.GitHubAccessToken;
+import com.naneun.mall.auth.dto.github.GitHubAccessTokenRequest;
+import com.naneun.mall.auth.dto.github.GitHubRefreshTokenRequest;
+import com.naneun.mall.auth.dto.github.GitHubUser;
 import com.naneun.mall.auth.properties.OAuthProperties;
 import com.naneun.mall.domain.entity.Member;
 import org.springframework.http.*;

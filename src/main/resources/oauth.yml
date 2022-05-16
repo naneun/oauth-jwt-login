@@ -1,8 +1,16 @@
 oauth:
-  github-client-id: ${CLIENT_ID}
-  github-client-secret: ${CLIENT_SECRET}
+  github-client-id: ${GITHUB_CLIENT_ID}
+  github-client-secret: ${GITHUB_CLIENT_SECRET}
+#  github-oauth-uri: https://github.com/login/oauth/authorize?client_id=4aaf8a942a7355e3c5fb
   github-access-token-uri: https://github.com/login/oauth/access_token
   github-user-uri: https://api.github.com/user
+
+  google-client_id: ${GOOGLE_CLIENT_ID}
+  google-client-secret: ${GOOGLE_CLIENT_SECRET}
+#  google-oauth-uri: https://accounts.google.com/o/oauth2/v2/auth?client_id=620455735088-2dop2nrtmoj19ar9ou5njm2vcl7e97c0.apps.googleusercontent.com&response_type=code&redirect_uri=http://localhost:8080/login/google/callback&scope=https://www.googleapis.com/auth/userinfo.email
+  google-access-token-uri: https://www.googleapis.com/oauth2/v4/token
+#  google-access-token-uri: https://oauth2.googleapis.com/token
+  google-user-uri: https://www.googleapis.com/oauth2/v2/userinfo
 
 jwt:
   issuer: ${ISSUER}

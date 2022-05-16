@@ -6,16 +6,13 @@ import com.naneun.mall.auth.annotation.AccessTokenParam;
 import com.naneun.mall.auth.annotation.RefreshTokenParam;
 import com.naneun.mall.auth.dto.LoginResponse;
 import com.naneun.mall.auth.dto.OAuthAccessToken;
+import com.naneun.mall.auth.dto.google.GoogleAccessToken;
 import com.naneun.mall.auth.provider.JwtTokenProvider;
 import com.naneun.mall.auth.service.LoginService;
 import com.naneun.mall.auth.service.OAuthService;
 import com.naneun.mall.domain.entity.Member;
-import com.naneun.mall.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 

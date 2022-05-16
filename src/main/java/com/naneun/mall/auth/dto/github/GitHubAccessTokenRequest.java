@@ -1,4 +1,4 @@
-package com.naneun.mall.auth.dto;
+package com.naneun.mall.auth.dto.github;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
