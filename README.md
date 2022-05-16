@@ -12,6 +12,10 @@
   - 5/14 jwt 로그인 기능 구현 (access-token 을 사용하여 `인증`, refresh-token 을 사용하여 access-token `갱신`)
   - 5/15 OAuth 로그인 기능 구현
 
+- ## 2주차
+
+  - 5/13 - API 설계, 예외처리 및 호눅스 백엔드 수업(5/9, 5/11) 복습 - 예정
+
 # 테이블 설계도
 ![Untitled Diagram drawio (20)](https://user-images.githubusercontent.com/47964708/168468785-e8ed36dc-5091-4628-9995-8236e5210f9d.png)  
 
