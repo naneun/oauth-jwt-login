@@ -78,8 +78,6 @@ public class GitHubOAuthService implements OAuthService {
                 .blockOptional()
                 .orElseThrow(RuntimeException::new);
 
-        gitHubUser.setAccessToken(accessToken);
-
-        return gitHubUser.toEntity();
+        return gitHubUser.toEntity(accessToken);
     }
 }

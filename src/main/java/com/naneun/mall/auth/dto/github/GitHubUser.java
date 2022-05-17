@@ -23,18 +23,10 @@ public class GitHubUser {
     @JsonProperty("name")
     private String name;
 
-    @NotEmpty
-    private OAuthAccessToken oAuthAccessToken;
-
-    public void setAccessToken(OAuthAccessToken oAuthAccessToken) {
-        this.oAuthAccessToken = oAuthAccessToken;
-    }
-
-    public Member toEntity() {
+    public Member toEntity(OAuthAccessToken oAuthAccessToken) {
         return Member.builder()
                 .socialId(userId)
                 .name(name)
-                .jwtRefreshToken(null)
                 .oauthAccessToken(oAuthAccessToken.getOAuthAccessToken())
                 .oauthRefreshToken(oAuthAccessToken.getOAuthRefreshToken())
                 .resourceServer(GITHUB)

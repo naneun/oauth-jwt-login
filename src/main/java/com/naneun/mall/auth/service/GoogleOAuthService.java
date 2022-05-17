@@ -91,8 +91,6 @@ public class GoogleOAuthService implements OAuthService {
                 .blockOptional()
                 .orElseThrow(GoogleApiException::new);
 
-        googleUser.setAccessToken(accessToken);
-
-        return googleUser.toEntity();
+        return googleUser.toEntity(accessToken);
     }
 }

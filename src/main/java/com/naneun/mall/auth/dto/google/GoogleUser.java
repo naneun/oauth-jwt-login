@@ -20,17 +20,9 @@ public class GoogleUser {
     @JsonProperty("email")
     private String email;
 
-    @NotEmpty
-    private OAuthAccessToken oAuthAccessToken;
-
-    public void setAccessToken(OAuthAccessToken oAuthAccessToken) {
-        this.oAuthAccessToken = oAuthAccessToken;
-    }
-
-    public Member toEntity() {
+    public Member toEntity(OAuthAccessToken oAuthAccessToken) {
         return Member.builder()
                 .socialId(userId)
-                .jwtRefreshToken(null)
                 .oauthAccessToken(oAuthAccessToken.getOAuthAccessToken())
                 .oauthRefreshToken(oAuthAccessToken.getOAuthRefreshToken())
                 .resourceServer(GOOGLE)
