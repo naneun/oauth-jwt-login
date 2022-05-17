@@ -11,8 +11,6 @@ public interface MemberRepository extends JpaRepository<Member, Long>  {
 
     Optional<Member> findBySocialIdAndResourceServer(String userId, ResourceServer resourceServer);
 
-    Optional<Member> findByIdAndJwtRefreshToken(Long id, String jwtRefreshToken);
-
     boolean existsBySocialIdAndResourceServer(String userId, ResourceServer resourceServer);
 
     @Query("select m.oauthRefreshToken from Member m where m.id = :id")
