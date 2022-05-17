@@ -15,7 +15,7 @@
 - ## 2주차
 
   - 5/16 - 호눅스 백엔드 수업(5/9) 복습 및 `Google` OAuth2 로그인 기능(+ refresh-token 을 사용하여 `만료된` access-token `갱신`)
-  - 5/17 - 간단한 예외 클래스 추가 및 코드 정리, 휴식
+  - 5/17 - 간단한 예외 클래스 추가 및 코드 정리, Redis 맛보기 학습
 
 # 테이블 설계도
 ![Untitled Diagram drawio (20)](https://user-images.githubusercontent.com/47964708/168468785-e8ed36dc-5091-4628-9995-8236e5210f9d.png)  
