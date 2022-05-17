@@ -2,6 +2,7 @@ package com.naneun.mall.service;
 
 import com.naneun.mall.auth.dto.common.ResourceServer;
 import com.naneun.mall.domain.entity.Member;
+import com.naneun.mall.exception.NoSuchMemberException;
 import com.naneun.mall.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class MemberService {
 
     public Member findMember(String userId, ResourceServer resourceServer) {
         return memberRepository.findBySocialIdAndResourceServer(userId, resourceServer)
-                .orElseThrow();
+                .orElseThrow(NoSuchMemberException::new);
     }
 
     public boolean existsMember(String userId, ResourceServer resourceServer) {

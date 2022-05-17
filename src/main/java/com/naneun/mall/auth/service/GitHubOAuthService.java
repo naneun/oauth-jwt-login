@@ -35,7 +35,13 @@ public class GitHubOAuthService implements OAuthService {
         GitHubAccessToken gitHubAccessToken = webClient.post()
                 .uri(accessTokenUri)
                 .accept(MediaType.APPLICATION_JSON)
-                .bodyValue(GitHubAccessTokenRequest.of(code, clientId, clientSecret))
+                .bodyValue(
+                        GitHubAccessTokenRequest.of(
+                                code,
+                                clientId,
+                                clientSecret
+                        )
+                )
                 .retrieve()
                 .bodyToMono(GitHubAccessToken.class)
                 .blockOptional()
@@ -45,7 +51,12 @@ public class GitHubOAuthService implements OAuthService {
             gitHubAccessToken = webClient.post()
                     .uri(accessTokenUri)
                     .accept(MediaType.APPLICATION_JSON)
-                    .bodyValue(GitHubAccessTokenRenewRequest.of(clientId, clientSecret))
+                    .bodyValue(
+                            GitHubAccessTokenRenewRequest.of(
+                                    clientId,
+                                    clientSecret
+                            )
+                    )
                     .retrieve()
                     .bodyToMono(GitHubAccessToken.class)
                     .blockOptional()
