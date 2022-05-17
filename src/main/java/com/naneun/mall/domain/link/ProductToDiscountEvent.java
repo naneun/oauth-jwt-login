@@ -1,7 +1,6 @@
 package com.naneun.mall.domain.link;
 
 import com.naneun.mall.domain.entity.DiscountEvent;
-import com.naneun.mall.domain.entity.OrderSheet;
 import com.naneun.mall.domain.entity.Product;
 import lombok.*;
 

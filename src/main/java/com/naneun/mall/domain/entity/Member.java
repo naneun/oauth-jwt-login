@@ -1,5 +1,6 @@
 package com.naneun.mall.domain.entity;
 
+import com.naneun.mall.auth.dto.common.ResourceServer;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,30 +20,47 @@ public class Member {
     private Long id;
 
     @NotEmpty
-    private String userId;
+    private String socialId;
 
     private String name;
 
-    @NotEmpty
-    private String refreshToken;
+    @Column(length = 1000)
+    private String jwtRefreshToken;
 
-    @NotEmpty
-    private String resourceServer;
+    @Column(length = 1000)
+    private String oauthAccessToken;
+
+    @Column(length = 1000)
+    private String oauthRefreshToken;
+
+    private ResourceServer resourceServer;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<OrderSheet> orderSheets;
 
     @Builder
-    private Member(Long id, String userId, String name, String refreshToken, String resourceServer) {
+    private Member(Long id, String socialId, String name, String jwtRefreshToken, String oauthAccessToken,
+                   String oauthRefreshToken, ResourceServer resourceServer) {
+
         this.id = id;
-        this.userId = userId;
+        this.socialId = socialId;
         this.name = name;
-        this.refreshToken = refreshToken;
+        this.jwtRefreshToken = jwtRefreshToken;
+        this.oauthAccessToken = oauthAccessToken;
+        this.oauthRefreshToken = oauthRefreshToken;
         this.resourceServer = resourceServer;
         this.orderSheets = new ArrayList<>();
     }
 
-    public void changeRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
+    public void changeJwtRefreshToken(String jwtRefreshToken) {
+        this.jwtRefreshToken = jwtRefreshToken;
+    }
+
+    public void changeOauthAccessToken(String oauthAccessToken) {
+        this.oauthAccessToken = oauthAccessToken;
+    }
+
+    public void changeOauthRefreshToken(String oauthRefreshToken) {
+        this.oauthRefreshToken = oauthRefreshToken;
     }
 }
