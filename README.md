@@ -15,15 +15,19 @@
 - ## 2주차
 
   - 5/16 - 호눅스 백엔드 수업(5/9) 복습 및 `Google` OAuth2 로그인 기능(+ refresh-token 을 사용하여 `만료된` access-token `갱신`)
-  - 5/17 - 간단한 예외 클래스 추가 및 코드 정리, Redis 맛보기 학습
+  - 5/17 - 간단한 예외 클래스 추가 및 Redis 를 사용하여 jwt - refresh token 을 보관하는 기능 구현
 
 # 테이블 설계도
+- version 1
 ![Untitled Diagram drawio (20)](https://user-images.githubusercontent.com/47964708/168468785-e8ed36dc-5091-4628-9995-8236e5210f9d.png)  
+- version 2
+![Untitled Diagram drawio (22)](https://user-images.githubusercontent.com/47964708/168885730-90a4bc28-125c-4239-93ff-ab3006bf6670.png)  
 
 - ## 수정사항
   - 2022.05.11 - delivery_area: `값 타입 컬렉션`을 사용해보기 위해 '다대다'로 연관관계를 맺지 않았습니다.
   - 2022.05.12 - 다대다 연관관계를 사용하지 않은 근거가 필요하여 delivery_area -> excluded_area 변경
   - 2022.05.15 - 어플리케이션이 서버 입장에서 `jwt_refresh_token` 을, 클라이언트 입장에서 `oauth_access_token`, `oauth_refresh_token` 을 저장하고 있도록 member 테이블에 칼럼 추가
+  - 2022.05.17 - jwt_refresh_token 칼럼을 삭제하고 해당 토큰은 Redis 를 사용하여 보관하도록 변경합니다.
 
 - ## 참고사항
   - ~2022.05.15 - GitHub 의 경우, Refresh-Token 이 따로 존재하지 않고 Access-Token 의 만료기간 또한 존재하지 않는다.~
