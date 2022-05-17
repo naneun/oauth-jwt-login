@@ -5,6 +5,9 @@ import com.naneun.mall.auth.dto.google.GoogleAccessToken;
 import com.naneun.mall.auth.dto.google.GoogleAccessTokenRenewRequest;
 import com.naneun.mall.auth.dto.google.GoogleAccessTokenRequest;
 import com.naneun.mall.auth.dto.google.GoogleUser;
+import com.naneun.mall.auth.exception.google.GoogleAccessTokenException;
+import com.naneun.mall.auth.exception.google.GoogleApiException;
+import com.naneun.mall.auth.exception.google.GoogleRefreshTokenException;
 import com.naneun.mall.auth.properties.OAuthProperties;
 import com.naneun.mall.domain.entity.Member;
 import com.naneun.mall.repository.MemberRepository;
@@ -40,30 +43,38 @@ public class GoogleOAuthService implements OAuthService {
         GoogleAccessToken googleAccessToken = webClient.post()
                 .uri(accessTokenUri)
                 .accept(MediaType.APPLICATION_JSON)
-                .bodyValue(GoogleAccessTokenRequest.of(code, clientId, clientSecret))
+                .bodyValue(
+                        GoogleAccessTokenRequest.of(
+                                code,
+                                clientId,
+                                clientSecret
+                        )
+                )
                 .retrieve()
                 .bodyToMono(GoogleAccessToken.class)
                 .blockOptional()
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(GoogleAccessTokenException::new);
 
         return googleAccessToken.toEntity();
     }
 
     @Override
     public OAuthAccessToken renewAccessToken(Long userId) {
-        Member member = memberRepository.findById(userId)
-                .orElseThrow();
-
-        System.out.println(member);
 
         GoogleAccessToken googleAccessToken = webClient.post()
                 .uri(accessTokenUri)
                 .accept(MediaType.APPLICATION_JSON)
-                .bodyValue(GoogleAccessTokenRenewRequest.of(clientId, clientSecret, member.getOauthRefreshToken()))
+                .bodyValue(
+                        GoogleAccessTokenRenewRequest.of(
+                                clientId,
+                                clientSecret,
+                                memberRepository.findOAuthRefreshTokenById(userId)
+                        )
+                )
                 .retrieve()
                 .bodyToMono(GoogleAccessToken.class)
                 .blockOptional()
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(GoogleRefreshTokenException::new);
 
         return googleAccessToken.toEntity();
     }
@@ -78,7 +89,7 @@ public class GoogleOAuthService implements OAuthService {
                 .retrieve()
                 .bodyToMono(GoogleUser.class)
                 .blockOptional()
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(GoogleApiException::new);
 
         googleUser.setAccessToken(accessToken);
 

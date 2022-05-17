@@ -2,8 +2,10 @@ package com.naneun.mall.auth.service;
 
 import com.naneun.mall.auth.dto.common.LoginResponse;
 import com.naneun.mall.auth.dto.common.ResourceServer;
+import com.naneun.mall.auth.exception.jwt.JwtRefreshTokenException;
 import com.naneun.mall.auth.provider.JwtTokenProvider;
 import com.naneun.mall.domain.entity.Member;
+import com.naneun.mall.exception.NoSuchMemberException;
 import com.naneun.mall.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,7 @@ public class LoginService {
         ResourceServer resourceServer = member.getResourceServer();
         if (memberRepository.existsBySocialIdAndResourceServer(socialId, resourceServer)) {
             member = memberRepository.findBySocialIdAndResourceServer(socialId, resourceServer)
-                    .orElseThrow();
+                    .orElseThrow(NoSuchMemberException::new);
         }
         member = memberRepository.save(member);
 
@@ -36,6 +38,6 @@ public class LoginService {
 
     public Member findUserByIdAndRefreshToken(Long id, String jwtRefreshToken) {
         return memberRepository.findByIdAndJwtRefreshToken(id, jwtRefreshToken)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(JwtRefreshTokenException::new);
     }
 }
