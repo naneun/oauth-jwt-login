@@ -31,5 +31,6 @@
 > ![SmartSelectImage_2022-05-16-04-27-08](https://user-images.githubusercontent.com/47964708/168490486-e473ac2b-9296-45c2-b68a-49d1b9cbf15f.png) 
 > ![SmartSelectImage_2022-05-16-04-26-48](https://user-images.githubusercontent.com/47964708/168490490-c633428b-cad9-41d0-8c85-1b63d25160f6.png)  
 - ### Google
+> ![SmartSelectImage_2022-05-17-23-46-45](https://user-images.githubusercontent.com/47964708/168849658-eddef90e-be40-4b02-848b-218067927bb4.png)  
 > ![SmartSelectImage_2022-05-17-23-46-58](https://user-images.githubusercontent.com/47964708/168840435-083107a0-f80f-48f3-81ee-5c4737d29c25.png)  
 - 기간이 만료된 access_token 을 파라미터로 넘겨주지 않아도 괜찮은가?!
