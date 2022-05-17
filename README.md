@@ -15,6 +15,7 @@
 - ## 2주차
 
   - 5/16 - 호눅스 백엔드 수업(5/9) 복습 및 `Google` OAuth2 로그인 기능(+ refresh-token 을 사용하여 `만료된` access-token `갱신`)
+  - 5/17 - 간단한 예외 클래스 추가 및 코드 정리, 휴식
 
 # 테이블 설계도
 ![Untitled Diagram drawio (20)](https://user-images.githubusercontent.com/47964708/168468785-e8ed36dc-5091-4628-9995-8236e5210f9d.png)  
@@ -26,5 +27,9 @@
 
 - ## 참고사항
   - ~2022.05.15 - GitHub 의 경우, Refresh-Token 이 따로 존재하지 않고 Access-Token 의 만료기간 또한 존재하지 않는다.~
+- ### GitHub
 > ![SmartSelectImage_2022-05-16-04-27-08](https://user-images.githubusercontent.com/47964708/168490486-e473ac2b-9296-45c2-b68a-49d1b9cbf15f.png) 
 > ![SmartSelectImage_2022-05-16-04-26-48](https://user-images.githubusercontent.com/47964708/168490490-c633428b-cad9-41d0-8c85-1b63d25160f6.png)  
+- ### Google
+> ![SmartSelectImage_2022-05-17-23-46-58](https://user-images.githubusercontent.com/47964708/168840435-083107a0-f80f-48f3-81ee-5c4737d29c25.png)  
+- 기간이 만료된 access_token 을 파라미터로 넘겨주지 않아도 괜찮은가?!
