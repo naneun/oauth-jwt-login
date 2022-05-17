@@ -30,6 +30,8 @@ public class LoginService {
 
         String jwtAccessToken = jwtTokenProvider.issueAccessToken(member);
         String jwtRefreshToken = jwtTokenProvider.issueRefreshToken(member);
+
+        // TODO Redis version..
         member.changeJwtRefreshToken(jwtRefreshToken);
         member = memberRepository.save(member);
 

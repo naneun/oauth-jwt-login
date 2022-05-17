@@ -58,6 +58,16 @@ public class GoogleOAuthService implements OAuthService {
         return googleAccessToken.toEntity();
     }
 
+    /**
+     * 구글 access-token 은 한시간 간격으로 만료된다.
+     * 만료된 access-token 으로 자원을 요청하면?
+     *
+     * 1. 리소스 서버가 access-token 이 만료되었다고 응답을 주는가?!
+     * 2. 그렇지 않다면, batch 를 사용하여 refresh-token 을 사용하여 access-token 을 갱신해볼까?!
+     * 
+     * @param userId
+     * @return
+     */
     @Override
     public OAuthAccessToken renewAccessToken(Long userId) {
 

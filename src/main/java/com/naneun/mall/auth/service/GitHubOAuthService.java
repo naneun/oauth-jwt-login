@@ -48,20 +48,35 @@ public class GitHubOAuthService implements OAuthService {
                 .orElseThrow(RuntimeException::new);
 
         if (gitHubAccessToken.hasRefreshToken()) {
-            gitHubAccessToken = webClient.post()
-                    .uri(accessTokenUri)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .bodyValue(
-                            GitHubAccessTokenRenewRequest.of(
-                                    clientId,
-                                    clientSecret
-                            )
-                    )
-                    .retrieve()
-                    .bodyToMono(GitHubAccessToken.class)
-                    .blockOptional()
-                    .orElseThrow(RuntimeException::new);
+            return renewAccessToken(0L);
         }
+
+        return gitHubAccessToken.toEntity();
+    }
+
+    /**
+     * The response parameters expires_in, refresh_token, and refresh_token_expires_in are
+     * only returned when you enable expiring user-to-server access tokens.
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public OAuthAccessToken renewAccessToken(Long userId) {
+
+        GitHubAccessToken gitHubAccessToken = webClient.post()
+                .uri(accessTokenUri)
+                .accept(MediaType.APPLICATION_JSON)
+                .bodyValue(
+                        GitHubAccessTokenRenewRequest.of(
+                                clientId,
+                                clientSecret
+                        )
+                )
+                .retrieve()
+                .bodyToMono(GitHubAccessToken.class)
+                .blockOptional()
+                .orElseThrow(RuntimeException::new);
 
         return gitHubAccessToken.toEntity();
     }
