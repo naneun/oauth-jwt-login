@@ -16,6 +16,7 @@
 
   - 5/16 - 호눅스 백엔드 수업(5/9) 복습 및 `Google` OAuth2 로그인 기능(+ refresh-token 을 사용하여 `만료된` access-token `갱신`)
   - 5/17 - 간단한 예외 클래스 추가 및 Redis 를 사용하여 jwt - refresh token 을 보관하는 기능 구현
+  - 5/18 - 호눅스 백엔드 수업(5/16) 복습 및 Redis 를 사용하여 로그아웃 기능 구현
 
 # 테이블 설계도
 - version 1
