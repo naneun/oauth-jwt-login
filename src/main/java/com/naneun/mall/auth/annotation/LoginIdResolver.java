@@ -1,5 +1,7 @@
 package com.naneun.mall.auth.annotation;
 
+import com.naneun.mall.auth.provider.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -12,11 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import static com.naneun.mall.auth.utils.OAuthUtils.*;
 
 @Component
-public class RefreshTokenResolver implements HandlerMethodArgumentResolver {
+@RequiredArgsConstructor
+public class LoginIdResolver implements HandlerMethodArgumentResolver {
+
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(RefreshTokenHeader.class);
+        return parameter.hasParameterAnnotation(LoginId.class);
     }
 
     @Override
@@ -24,6 +29,7 @@ public class RefreshTokenResolver implements HandlerMethodArgumentResolver {
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
 
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
-        return request.getHeader(REFRESH_TOKEN);
+        String refreshTokenValue = request.getHeader(REFRESH_TOKEN);
+        return jwtTokenProvider.getUserId(jwtTokenProvider.decodeToken(refreshTokenValue));
     }
 }

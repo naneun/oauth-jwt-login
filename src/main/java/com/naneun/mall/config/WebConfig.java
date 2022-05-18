@@ -1,6 +1,7 @@
 package com.naneun.mall.config;
 
 import com.naneun.mall.auth.annotation.AccessTokenResolver;
+import com.naneun.mall.auth.annotation.LoginIdResolver;
 import com.naneun.mall.auth.annotation.RefreshTokenResolver;
 import com.naneun.mall.auth.interceptor.JwtInterceptor;
 import io.netty.resolver.DefaultAddressResolverGroup;
@@ -25,6 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     private final AccessTokenResolver accessTokenResolver;
     private final RefreshTokenResolver refreshTokenResolver;
+    private final LoginIdResolver loginIdResolver;
 
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
@@ -54,5 +56,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         argumentResolvers.add(accessTokenResolver);
         argumentResolvers.add(refreshTokenResolver);
+        argumentResolvers.add(loginIdResolver);
     }
 }
