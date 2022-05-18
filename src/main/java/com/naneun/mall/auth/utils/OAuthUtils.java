@@ -6,7 +6,6 @@ public class OAuthUtils {
     public static final String REFRESH_TOKEN = "Refresh-Token";
 
     public static final String BEARER = "Bearer";
-    public static final String HEADER_DELIMITER = ":";
 
     public static final String USER_ID = "User_Id";
     public static final String SOCIAL_ID = "Social_Id";
