@@ -17,10 +17,6 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public Member findMember(Long id) {
-        return memberRepository.findById(id).orElseThrow(NoSuchMemberException::new);
-    }
-
     public Member findMember(String userId, ResourceServer resourceServer) {
         return memberRepository.findBySocialIdAndResourceServer(userId, resourceServer)
                 .orElseThrow(NoSuchMemberException::new);

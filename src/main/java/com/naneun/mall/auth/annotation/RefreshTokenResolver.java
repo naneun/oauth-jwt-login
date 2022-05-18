@@ -16,7 +16,7 @@ public class RefreshTokenResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(RefreshTokenHeader.class);
+        return parameter.hasParameterAnnotation(RefreshTokenParam.class);
     }
 
     @Override
@@ -24,6 +24,7 @@ public class RefreshTokenResolver implements HandlerMethodArgumentResolver {
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
 
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
-        return request.getHeader(REFRESH_TOKEN);
+        String accessTokenHeader = request.getHeader(REFRESH_TOKEN);
+        return accessTokenHeader.split(HEADER_DELIMITER)[1].trim();
     }
 }
