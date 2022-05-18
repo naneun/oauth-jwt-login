@@ -23,7 +23,7 @@ public class RedisService {
         return values.get(userId);
     }
 
-    public void removeJwtRefreshToken(Long userId) {
-        redisTemplate.delete(String.valueOf(userId));
+    public void removeJwtRefreshToken(String userId) {
+        redisTemplate.delete(userId);
     }
 }

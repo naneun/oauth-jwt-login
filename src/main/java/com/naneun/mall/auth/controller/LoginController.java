@@ -2,8 +2,8 @@ package com.naneun.mall.auth.controller;
 
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.naneun.mall.auth.annotation.AccessTokenParam;
-import com.naneun.mall.auth.annotation.RefreshTokenParam;
+import com.naneun.mall.auth.annotation.AccessTokenHeader;
+import com.naneun.mall.auth.annotation.RefreshTokenHeader;
 import com.naneun.mall.auth.dto.common.OAuthAccessToken;
 import com.naneun.mall.auth.exception.jwt.JwtRefreshTokenException;
 import com.naneun.mall.auth.provider.JwtTokenProvider;
@@ -51,14 +51,14 @@ public class LoginController {
         response.setHeader(ACCESS_TOKEN, jwtAccessToken);
         response.setHeader(REFRESH_TOKEN, jwtRefreshToken);
 
-        redisService.saveJwtRefreshToken(String.valueOf(member.getId()), jwtRefreshToken);
+        redisService.saveJwtRefreshToken(member.getId().toString(), jwtRefreshToken);
 
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/update/jwt-access-token")
-    public void updateJwtAccessToken(@AccessTokenParam String accessToken,
-                                     @RefreshTokenParam String refreshToken,
+    public void updateJwtAccessToken(@AccessTokenHeader String accessToken,
+                                     @RefreshTokenHeader String refreshToken,
                                      HttpServletResponse response) {
 
         try {
@@ -66,7 +66,7 @@ public class LoginController {
         } catch (TokenExpiredException e) {
             DecodedJWT decodedJWT = jwtTokenProvider.decodeToken(refreshToken);
             Long userId = jwtTokenProvider.getUserId(decodedJWT);
-            validateRefreshToken(refreshToken, redisService.getJwtRefreshToken(String.valueOf(userId)));
+            validateRefreshToken(refreshToken, redisService.getJwtRefreshToken(userId.toString()));
             Member member = memberService.findMember(userId);
             response.setHeader(ACCESS_TOKEN, jwtTokenProvider.issueAccessToken(member));
         }
