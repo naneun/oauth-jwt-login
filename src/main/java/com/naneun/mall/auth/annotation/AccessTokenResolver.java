@@ -16,7 +16,7 @@ public class AccessTokenResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(AccessTokenHeader.class);
+        return parameter.hasParameterAnnotation(AccessTokenParam.class);
     }
 
     @Override
@@ -24,6 +24,7 @@ public class AccessTokenResolver implements HandlerMethodArgumentResolver {
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
 
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
-        return request.getHeader(ACCESS_TOKEN);
+        String accessTokenHeader = request.getHeader(ACCESS_TOKEN);
+        return accessTokenHeader.split(HEADER_DELIMITER)[1].trim();
     }
 }

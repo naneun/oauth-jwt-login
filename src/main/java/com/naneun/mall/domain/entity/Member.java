@@ -25,6 +25,9 @@ public class Member {
     private String name;
 
     @Column(length = 1000)
+    private String jwtRefreshToken;
+
+    @Column(length = 1000)
     private String oauthAccessToken;
 
     @Column(length = 1000)
@@ -36,16 +39,21 @@ public class Member {
     private List<OrderSheet> orderSheets;
 
     @Builder
-    private Member(Long id, String socialId, String name, String oauthAccessToken,
+    private Member(Long id, String socialId, String name, String jwtRefreshToken, String oauthAccessToken,
                    String oauthRefreshToken, ResourceServer resourceServer) {
 
         this.id = id;
         this.socialId = socialId;
         this.name = name;
+        this.jwtRefreshToken = jwtRefreshToken;
         this.oauthAccessToken = oauthAccessToken;
         this.oauthRefreshToken = oauthRefreshToken;
         this.resourceServer = resourceServer;
         this.orderSheets = new ArrayList<>();
+    }
+
+    public void changeJwtRefreshToken(String jwtRefreshToken) {
+        this.jwtRefreshToken = jwtRefreshToken;
     }
 
     public void changeOauthAccessToken(String oauthAccessToken) {
