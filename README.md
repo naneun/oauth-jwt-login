@@ -17,6 +17,8 @@
   - 5/16 - 호눅스 백엔드 수업(5/9) 복습 및 `Google` OAuth2 로그인 기능(+ refresh-token 을 사용하여 `만료된` access-token `갱신`)
   - 5/17 - 간단한 예외 클래스 추가 및 Redis 를 사용하여 jwt - refresh token 을 보관하는 기능 구현
   - 5/18 - Redis 를 사용하여 로그아웃 기능 구현 및 휴식 😅
+  - 5/19 https://velog.io/@naneun/Spring-Boot-OAuth-GitHub-Google-%EB%A1%9C%EA%B7%B8%EC%9D%B8
+  - 5/20 피어 세션
 
 # 테이블 설계도
 - version 1
