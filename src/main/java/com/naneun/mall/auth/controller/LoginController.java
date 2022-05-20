@@ -39,6 +39,7 @@ public class LoginController {
     @GetMapping("/{resource-server}/callback")
     public ResponseEntity<Void> login(@PathVariable("resource-server") String resourceServer,
                                 String code, HttpServletResponse response) {
+
         OAuthService oAuthService = oAuthServices.get(resourceServer);
         OAuthAccessToken oAuthAccessToken = oAuthService.requestAccessToken(code);
         Member member = oAuthService.requestUserInfo(oAuthAccessToken);

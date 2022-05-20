@@ -1,5 +1,6 @@
 package com.naneun.mall.auth.interceptor;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.naneun.mall.auth.provider.JwtTokenProvider;
@@ -40,6 +41,9 @@ public class JwtInterceptor implements HandlerInterceptor {
             request.setAttribute(USER_ID, jwtTokenProvider.getUserId(decodedJWT));
         } catch (TokenExpiredException e) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            return false;
+        } catch (JWTVerificationException ex) {
+            response.setStatus(HttpStatus.FORBIDDEN.value());
             return false;
         }
 
