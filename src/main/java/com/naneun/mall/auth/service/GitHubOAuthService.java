@@ -5,6 +5,7 @@ import com.naneun.mall.auth.dto.github.GitHubAccessToken;
 import com.naneun.mall.auth.dto.github.GitHubAccessTokenRequest;
 import com.naneun.mall.auth.dto.github.GitHubAccessTokenRenewRequest;
 import com.naneun.mall.auth.dto.github.GitHubUser;
+import com.naneun.mall.auth.exception.github.GitHubOAuthException;
 import com.naneun.mall.auth.properties.OAuthProperties;
 import com.naneun.mall.domain.entity.Member;
 import org.springframework.http.*;
@@ -45,7 +46,7 @@ public class GitHubOAuthService implements OAuthService {
                 .retrieve()
                 .bodyToMono(GitHubAccessToken.class)
                 .blockOptional()
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(GitHubOAuthException::new);
 
         if (gitHubAccessToken.hasRefreshToken()) {
             return renewAccessToken(0L);
